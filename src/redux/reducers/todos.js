@@ -1,39 +1,46 @@
-import { ADD_TODO, TOGGLE_TODO } from "../actionTypes";
-
-const initialState = {
-  allIds: [],
-  byIds: {}
-};
-
-export default function(state = initialState, action) {
+export function todos(state = [], action) {
   switch (action.type) {
-    case ADD_TODO: {
-      const { id, content } = action.payload;
-      return {
-        ...state,
-        allIds: [...state.allIds, id],
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            content,
-            completed: false
-          }
-        }
-      };
-    }
-    case TOGGLE_TODO: {
-      const { id } = action.payload;
-      return {
-        ...state,
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            ...state.byIds[id],
-            completed: !state.byIds[id].completed
-          }
-        }
-      };
-    }
+    case types.ADD_TODO:
+      return state.concat([
+        {
+          text: action.text,
+          completed: false,
+          id: state.length
+            ? state.reduce((maxId, todo) => {
+                return Math.max(todo.id, maxId);
+              }, -1) + 1
+            : 0,
+        },
+      ]);
+
+    case types.DELETE_TODO:
+      return state.filter((todo) => {
+        return todo.id !== Number(action.id);
+      });
+
+    case types.EDIT_TODO:
+      return state.map((todo) => {
+        return todo.id === Number(action.id)
+          ? Object.assign({}, todo, { text: action.text })
+          : todo;
+      });
+    case types.COMPLETE_TODO:
+      return state.map((todo) => {
+        return todo.id === Number(action.id)
+          ? Object.assign({}, todo, { completed: !todo.completed })
+          : todo;
+      });
+
+    case types.COMPLETE_ALL:
+      return state.map(function (todo) {
+        return Object.assign({}, todo, { completed: !todo.completed });
+      });
+
+    case types.CLEAR_COMPLETED:
+      return state.filter((todo) => {
+        return !todo.completed;
+      });
+
     default:
       return state;
   }

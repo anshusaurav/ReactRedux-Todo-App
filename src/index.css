@@ -4,9 +4,7 @@
   justify-content: center;
   align-items: center;
 }
-.main{
-  
-}
+
 /** add todo **/
 .add-todo {
   margin-left: 0.5rem;
@@ -25,7 +23,7 @@
   cursor: pointer;
   line-height: 1.5;
 }
-.todo-item__text--completed {
+.todo-item-completed {
   text-decoration: line-through;
   color: lightgray;
 }

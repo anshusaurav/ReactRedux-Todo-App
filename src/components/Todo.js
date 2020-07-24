@@ -9,7 +9,7 @@ const Todo = ({ todo, toggleTodo }) => (
     <span
       className={cx(
         "todo-item__text",
-        todo && todo.completed && "todo-item__text--completed"
+        todo && todo.completed && "todo-item-completed"
       )}
     >
       {todo.content}
@@ -18,7 +18,4 @@ const Todo = ({ todo, toggleTodo }) => (
 );
 
 // export default Todo;
-export default connect(
-  null,
-  { toggleTodo }
-)(Todo);
+export default connect(null, { toggleTodo })(Todo);

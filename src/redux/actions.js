@@ -1,18 +1,26 @@
-import { ADD_TODO, TOGGLE_TODO, SET_FILTER } from "./actionTypes";
+import {types} from 'actionTypes'
+var actions = {
+  addTodo: function (text) {
+    return { type: types.ADD_TODO, text };
+  },
 
-let nextTodoId = 0;
+  deleteTodo: function (id) {
+    return { type: types.DELETE_TODO, id };
+  },
 
-export const addTodo = content => ({
-  type: ADD_TODO,
-  payload: {
-    id: ++nextTodoId,
-    content
-  }
-});
+  editTodo: function (id, text) {
+    return { type: types.EDIT_TODO, id, text };
+  },
 
-export const toggleTodo = id => ({
-  type: TOGGLE_TODO,
-  payload: { id }
-});
+  completeTodo: function (id) {
+    return { type: types.COMPLETE_TODO, id };
+  },
 
-export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } });
+  completeAll: function () {
+    return { type: types.COMPLETE_ALL };
+  },
+
+  clearCompleted: function () {
+    return { type: types.CLEAR_COMPLETED };
+  },
+};

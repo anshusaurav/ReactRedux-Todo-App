@@ -1,3 +1,11 @@
-export const ADD_TODO = "ADD_TODO";
-export const TOGGLE_TODO = "TOGGLE_TODO";
-export const SET_FILTER = "SET_FILTER";
+export default types = {
+  ADD_TODO: "ADD_TODO",
+  DELETE_TODO: "DELETE_TODO",
+  EDIT_TODO: "EDIT_TODO",
+  COMPLETE_TODO: "COMPLETE_TODO",
+  COMPLETE_ALL: "COMPLETE_ALL",
+  CLEAR_COMPLETED: "CLEAR_COMPLETED",
+  ACTIVE: "Active",
+  COMPLETED: "Completed",
+  ALL: "All",
+};

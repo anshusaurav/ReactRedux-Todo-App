@@ -1,17 +1,12 @@
-import { SET_FILTER } from "../actionTypes";
-import { VISIBILITY_FILTERS } from "../../constants";
-
-const initialState = VISIBILITY_FILTERS.ALL;
-
-const visibilityFilter = (state = initialState, action) => {
+export function changeTabs(state = "All", action) {
   switch (action.type) {
-    case SET_FILTER: {
-      return action.payload.filter;
-    }
-    default: {
+    case types.ACTIVE:
+      return "Active";
+    case types.COMPLETED:
+      return "Completed";
+    case types.ALL:
+      return "All";
+    default:
       return state;
-    }
   }
-};
-
-export default visibilityFilter;
+}
