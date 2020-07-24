@@ -1,4 +1,4 @@
-export default types = {
+const types = {
   ADD_TODO: "ADD_TODO",
   DELETE_TODO: "DELETE_TODO",
   EDIT_TODO: "EDIT_TODO",
@@ -9,3 +9,4 @@ export default types = {
   COMPLETED: "Completed",
   ALL: "All",
 };
+export default types;

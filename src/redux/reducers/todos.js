@@ -1,4 +1,5 @@
-export function todos(state = [], action) {
+import types from "./../actionTypes";
+function todos(state = [], action) {
   switch (action.type) {
     case types.ADD_TODO:
       return state.concat([
@@ -45,3 +46,4 @@ export function todos(state = [], action) {
       return state;
   }
 }
+export default todos;

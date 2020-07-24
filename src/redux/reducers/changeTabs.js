@@ -1,4 +1,5 @@
-export function changeTabs(state = "All", action) {
+import types from "./../actionTypes";
+function changeTabs(state = "All", action) {
   switch (action.type) {
     case types.ACTIVE:
       return "Active";
@@ -10,3 +11,4 @@ export function changeTabs(state = "All", action) {
       return state;
   }
 }
+export default changeTabs;
