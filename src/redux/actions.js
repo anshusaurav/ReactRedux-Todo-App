@@ -23,5 +23,14 @@ var actions = {
   clearCompleted: function () {
     return { type: types.CLEAR_COMPLETED };
   },
+  switchActive: function () {
+    return { type: types.ACTIVE };
+  },
+  switchCompleted: function () {
+    return { type: types.COMPLETED };
+  },
+  switchAll: function () {
+    return { type: types.ALL };
+  },
 };
 export default actions;

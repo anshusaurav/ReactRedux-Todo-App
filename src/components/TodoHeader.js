@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import actions from "./../redux/actions";
+import { bindActionCreators } from "redux";
 class TodoHeader extends React.Component {
   constructor(props) {
     super(props);
@@ -9,16 +10,11 @@ class TodoHeader extends React.Component {
   }
 
   handleKeyUp(event) {
-    console.log(event.keyCode);
-    console.log(event.target.value);
     if (event.keyCode === 13) {
-      let str = event.target.value.trim();
-      if (str.length > 0) {
-        //create new todo;
-        //reset input field
-        const value = str;
-        this.props.dispatch(actions.addTodo(value));
-        this.setState({ text: "" });
+      let value = event.target.value.trim();
+      if (value.length > 0) {
+        this.props.actions.addTodo(value);
+        event.target.value = "";
       }
     }
     this.setState({ text: event.target.value });
@@ -43,4 +39,10 @@ class TodoHeader extends React.Component {
     );
   }
 }
-export default connect()(TodoHeader);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(TodoHeader);

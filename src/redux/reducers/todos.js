@@ -2,6 +2,7 @@ import types from "./../actionTypes";
 function todos(state = [], action) {
   switch (action.type) {
     case types.ADD_TODO:
+      console.log("concating");
       return state.concat([
         {
           text: action.text,
