@@ -15,7 +15,7 @@ export default function TodoApp() {
         <TodoMain />
         <TodoFooter />
       </div>
-      <footer class="info">
+      <footer className="info">
         <p>Double-click to edit a todo</p>
         <p>
           Created by <a href="http://twitter.com/anshusaurav">Anshu Saurabh</a>

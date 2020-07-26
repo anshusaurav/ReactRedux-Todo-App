@@ -1,4 +1,4 @@
-import types from "actionTypes";
+import types from "./actionTypes";
 var actions = {
   addTodo: function (text) {
     return { type: types.ADD_TODO, text };
@@ -24,3 +24,4 @@ var actions = {
     return { type: types.CLEAR_COMPLETED };
   },
 };
+export default actions;

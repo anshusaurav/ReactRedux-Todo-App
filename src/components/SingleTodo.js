@@ -5,7 +5,7 @@ class SingleTodo extends React.Component {
     return (
       <li id={id} className="">
         <div className="view">
-          <input class="toggle" type="checkbox" />
+          <input class="toggle" type="checkbox" defaultChecked={completed} />
           <label>{text}</label>
           <input type="text" class="edit-text" />
           <button class="destroy"></button>
@@ -14,3 +14,4 @@ class SingleTodo extends React.Component {
     );
   }
 }
+export default defaultSingleTodo;

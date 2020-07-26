@@ -2,24 +2,24 @@ import React from "react";
 class TodoFooter extends React.Component {
   render() {
     return (
-      <footer class="footer">
-        <span class="todo-count"></span>
-        <ul class="filters">
+      <footer className="footer">
+        <span className="todo-count"></span>
+        <ul className="filters">
           <li>
-            <a class="selected all">All</a>
+            <a className="selected all">All</a>
           </li>
           <li>
-            <a href="#/active" class="active">
+            <a href="#/active" className="active">
               Active
             </a>
           </li>
           <li>
-            <a href="#/completed" class="completed">
+            <a href="#/completed" className="completed">
               Completed
             </a>
           </li>
         </ul>
-        <button class="clear-completed">Clear completed</button>
+        <button className="clear-completed">Clear completed</button>
       </footer>
     );
   }

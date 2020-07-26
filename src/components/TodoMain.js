@@ -2,8 +2,8 @@ import React from "react";
 class TodoMain extends React.Component {
   render() {
     return (
-      <main class="main">
-        <ul class="todo-list"></ul>
+      <main className="main">
+        <ul className="todo-list"></ul>
       </main>
     );
   }
