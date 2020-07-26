@@ -7,14 +7,17 @@ import actions from "./../redux/actions";
 class SingleTodo extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { editMode: false, newText: this.props.text };
+    this.handleDblClick = this.handleDblClick.bind(this);
     this.toggleTodo = this.toggleTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
   toggleTodo(event) {
     const target = event.target;
     const id = target.parentNode.parentNode.id;
     this.props.actions.completeTodo(id);
-    // console.log(id);
   }
   removeTodo(event) {
     event.preventDefault();
@@ -22,8 +25,29 @@ class SingleTodo extends React.Component {
     const id = target.parentNode.parentNode.id;
     this.props.actions.deleteTodo(id);
   }
+  handleDblClick(event) {
+    event.preventDefault();
+    this.setState({ editMode: true });
+  }
+
+  handleChange(event) {
+    event.preventDefault();
+    const { id } = this.props;
+    const text = event.target.value;
+    if (event.keyCode === 13) {
+      this.props.actions.editTodo(id, text);
+      this.setState({ editMode: false });
+      this.setState({ newText: this.props.text });
+    }
+    this.setState({ newText: event.target.value });
+  }
+  handleOnChange(event) {
+    event.preventDefault();
+    this.setState({ newText: event.target.value });
+  }
   render() {
     const { text, completed, id } = this.props;
+    const { editMode, newText } = this.state;
     console.log("HERERER", this.props);
     return (
       <li id={id} className={completed ? "completed" : ""}>
@@ -31,11 +55,22 @@ class SingleTodo extends React.Component {
           <input
             className="toggle"
             type="checkbox"
-            defaultChecked={completed}
-            onClick={this.toggleTodo}
+            checked={completed}
+            onChange={this.toggleTodo}
           />
-          <label>{text}</label>
-          <input type="text" className="edit-text" />
+          {editMode ? (
+            <input
+              type="text"
+              className="edit-text"
+              defaultValue={text}
+              value={newText}
+              onKeyUp={this.handleChange}
+              onChange={this.handleOnChange}
+            />
+          ) : (
+            <label onDoubleClick={this.handleDblClick}>{text}</label>
+          )}
+
           <button className="destroy" onClick={this.removeTodo}></button>
         </div>
       </li>

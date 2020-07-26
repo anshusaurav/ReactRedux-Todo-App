@@ -7,6 +7,7 @@ class TodoHeader extends React.Component {
     super(props);
     this.state = { text: "", allSelected: false };
     this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleToggleAll = this.handleToggleAll.bind(this);
   }
 
   handleKeyUp(event) {
@@ -19,12 +20,20 @@ class TodoHeader extends React.Component {
     }
     this.setState({ text: event.target.value });
   }
+  handleToggleAll(event) {
+    this.props.actions.completeAll();
+  }
   render() {
     return (
       <header className="header">
         <h1>todos</h1>
         <div className="header-todo">
-          <input id="toggle-all" className="toggle-all" type="checkbox" />
+          <input
+            id="toggle-all"
+            className="toggle-all"
+            type="checkbox"
+            onClick={this.handleToggleAll}
+          />
           <label htmlFor="toggle-all"></label>
           <input
             type="text"
@@ -39,10 +48,13 @@ class TodoHeader extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return state;
+};
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: bindActionCreators(actions, dispatch),
   };
 };
 
-export default connect(null, mapDispatchToProps)(TodoHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(TodoHeader);
